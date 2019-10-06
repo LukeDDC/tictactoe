@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    this->game = new TicTacToe();
     for (int row = 0; row< 3; ++row) {
         for (int column = 0; column < 3; ++column) {
             GameButton *button = new GameButton(row, column, ui->gridLayoutWidget);
@@ -20,9 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete game;
 }
 
 void MainWindow::handleButtonClick()
 {
     GameButton *clickedButton = qobject_cast<GameButton*>(sender());
+    char returnedValue = game->play(clickedButton->getX(), clickedButton->getY());
+    clickedButton->setText(QString(returnedValue));
 }

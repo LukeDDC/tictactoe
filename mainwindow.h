@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "gamebutton.h"
 #include "QObject"
-#include "QDebug"
+#include "tictactoe.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    TicTacToe *game;
 
 public slots:
     void handleButtonClick();
