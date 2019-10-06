@@ -58,4 +58,7 @@ void MainWindow::handleResetButtonClick()
         GameButton *button = gameButtons->at(i);
         button->setText("");
     }
+    ui->winnerLabel->setText("");
+    ui->winnerLabel->hide();
+    game->reset();
 }
