@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     gamebutton.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tictactoe.cpp
 
 HEADERS += \
     gamebutton.h \
-    mainwindow.h
+    mainwindow.h \
+    tictactoe.h
 
 FORMS += \
     mainwindow.ui
