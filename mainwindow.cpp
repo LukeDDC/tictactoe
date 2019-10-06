@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->winnerLabel->hide();
     this->game = new TicTacToe();
     for (int row = 0; row< 3; ++row) {
         for (int column = 0; column < 3; ++column) {
@@ -28,4 +29,10 @@ void MainWindow::handleButtonClick()
     GameButton *clickedButton = qobject_cast<GameButton*>(sender());
     char returnedValue = game->play(clickedButton->getX(), clickedButton->getY());
     clickedButton->setText(QString(returnedValue));
+
+    if(game->isGameOver())
+    {
+        ui->winnerLabel->setText(QString("PLAYER %1 HAVE WON").arg(game->getWinner()));
+        ui->winnerLabel->show();
+    }
 }

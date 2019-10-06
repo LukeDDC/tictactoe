@@ -5,6 +5,7 @@
 #include "gamebutton.h"
 #include "QObject"
 #include "tictactoe.h"
+#include "QDebug"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
