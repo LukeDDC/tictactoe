@@ -20,6 +20,16 @@ bool TicTacToe::canPlay(int x, int y)
     return true;
 }
 
+void TicTacToe::reset()
+{
+    currentPlayer = 'X';
+    for (int row = 0; row < rows; ++row) {
+        for (int column = 0; column < cols; ++column) {
+            game[row][column] = '\0';
+        }
+    }
+}
+
 char TicTacToe::play(int x, int y)
 {
     char playerMark = getCurrentPlayer();

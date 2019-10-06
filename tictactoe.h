@@ -11,6 +11,7 @@ public:
     bool isGameOver();
     bool haveWeBoringTied();
     bool canPlay(int, int);
+    void reset();
 private:
     int const static rows = 3;
     int const static cols = 3;
