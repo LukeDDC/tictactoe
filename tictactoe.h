@@ -19,9 +19,11 @@ private:
     void switchPlayer();
     bool horizontalWin();
     bool verticalWin();
+    bool diagonalWin();
     bool checkColsOfRow(int row);
     bool checkRowsOfCol(int col);
-
+    bool checkPrimaryDiagonalWin();
+    bool checkSecondaryDiagonalWin();
 };
 
 #endif // TICTACTOE_H

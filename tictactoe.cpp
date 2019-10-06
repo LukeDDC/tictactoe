@@ -37,10 +37,43 @@ void TicTacToe::switchPlayer()
 
 bool TicTacToe::isGameOver()
 {
-    if(verticalWin() || horizontalWin()) {
+    if(verticalWin() || horizontalWin() || diagonalWin()) {
         return true;
     }
 
+    return false;
+}
+
+bool TicTacToe::diagonalWin()
+{
+    if(checkPrimaryDiagonalWin())
+    {
+        winnerMark = game[1][1];
+        return true;
+    } else if (checkSecondaryDiagonalWin())
+    {
+        winnerMark = game[1][1];
+        return true;
+    }
+
+    return false;
+}
+
+bool TicTacToe::checkSecondaryDiagonalWin()
+{
+    if(game[2][0] == '\0' || game[0][2] == '\0' || game[1][1] == '\0')
+        return false;
+    if(game[2][0] == game[1][1] && game[1][1] == game[0][2])
+        return true;
+    return false;
+}
+
+bool TicTacToe::checkPrimaryDiagonalWin()
+{
+    if(game[0][0] == '\0' || game[1][1] == '\0' || game[2][2] == '\0')
+        return false;
+    if(game[0][0] == game[1][1] && game[1][1] == game[2][2])
+        return true;
     return false;
 }
 
