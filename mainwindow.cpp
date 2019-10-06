@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "gamebutton.h"
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
             GameButton *button = new GameButton(row, column, ui->gridLayoutWidget);
             button->setText("");
             ui->gridLayout->addWidget(button, row, column);
+            connect(button, SIGNAL(clicked()), this, SLOT(handleButtonClick()));
         }
     }
 }
@@ -23,3 +22,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::handleButtonClick()
+{
+    GameButton *clickedButton = qobject_cast<GameButton*>(sender());
+}

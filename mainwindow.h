@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "gamebutton.h"
+#include "QObject"
+#include "QDebug"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +20,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+public slots:
+    void handleButtonClick();
 };
 #endif // MAINWINDOW_H
