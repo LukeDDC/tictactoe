@@ -12,6 +12,14 @@ TicTacToe::TicTacToe()
     }
 }
 
+bool TicTacToe::canPlay(int x, int y)
+{
+    if(isGameOver() || isPositionAlreadyTaken(x, y))
+        return false;
+
+    return true;
+}
+
 char TicTacToe::play(int x, int y)
 {
     char playerMark = getCurrentPlayer();
@@ -20,6 +28,14 @@ char TicTacToe::play(int x, int y)
     return playerMark;
 }
 
+
+bool TicTacToe::isPositionAlreadyTaken(int x, int y)
+{
+    if(game[x][y] != '\0')
+        return true;
+
+    return false;
+}
 
 char TicTacToe::getCurrentPlayer()
 {
@@ -37,12 +53,30 @@ void TicTacToe::switchPlayer()
 
 bool TicTacToe::isGameOver()
 {
-    if(verticalWin() || horizontalWin() || diagonalWin()) {
+    if(verticalWin() || horizontalWin() || diagonalWin() || haveWeBoringTied()) {
         return true;
     }
 
     return false;
 }
+
+bool TicTacToe::haveWeBoringTied() {
+    if(!isAnythigEmpty())
+        return true;
+
+    return false;
+}
+
+bool TicTacToe::isAnythigEmpty()
+{
+    for (int row = 0; row < rows; row++)
+        for (int col = 0; col < cols; col++)
+            if (game[row][col] == '\0')
+                return true;
+
+    return false;
+}
+
 
 bool TicTacToe::diagonalWin()
 {

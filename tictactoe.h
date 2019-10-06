@@ -9,6 +9,8 @@ public:
     char getCurrentPlayer();
     char getWinner();
     bool isGameOver();
+    bool haveWeBoringTied();
+    bool canPlay(int, int);
 private:
     int const static rows = 3;
     int const static cols = 3;
@@ -17,6 +19,7 @@ private:
     char winnerMark;
 
     void switchPlayer();
+    bool isPositionAlreadyTaken(int, int);
     bool horizontalWin();
     bool verticalWin();
     bool diagonalWin();
@@ -24,6 +27,7 @@ private:
     bool checkRowsOfCol(int col);
     bool checkPrimaryDiagonalWin();
     bool checkSecondaryDiagonalWin();
+    bool isAnythigEmpty();
 };
 
 #endif // TICTACTOE_H

@@ -27,12 +27,22 @@ MainWindow::~MainWindow()
 void MainWindow::handleButtonClick()
 {
     GameButton *clickedButton = qobject_cast<GameButton*>(sender());
-    char returnedValue = game->play(clickedButton->getX(), clickedButton->getY());
-    clickedButton->setText(QString(returnedValue));
 
-    if(game->isGameOver())
+    if(game->canPlay(clickedButton->getX(), clickedButton->getY()))
     {
-        ui->winnerLabel->setText(QString("PLAYER %1 HAVE WON").arg(game->getWinner()));
-        ui->winnerLabel->show();
+        char returnedValue = game->play(clickedButton->getX(), clickedButton->getY());
+        clickedButton->setText(QString(returnedValue));
+        if(game->isGameOver())
+        {
+            if(game->haveWeBoringTied())
+            {
+                ui->winnerLabel->setText(QString("SUCH A CRAPY GAME"));
+            }
+            else
+            {
+                ui->winnerLabel->setText(QString("PLAYER %1 HAVE WON").arg(game->getWinner()));
+            }
+            ui->winnerLabel->show();
+        }
     }
 }
