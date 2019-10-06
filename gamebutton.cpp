@@ -22,11 +22,16 @@ void GameButton::setY(int y)
 {
     this->y = y;
 }
-int GameButton::getX(int)
+int GameButton::getX()
 {
   return this->x;
 }
-int GameButton::getY(int)
+int GameButton::getY()
 {
   return this->y;
+}
+
+GameButton *GameButton::teste()
+{
+    return this;
 }

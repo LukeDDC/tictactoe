@@ -13,8 +13,8 @@ public:
     ~GameButton();
     void setX(int);
     void setY(int);
-    int getX(int);
-    int getY(int);
+    int getX();
+    int getY();
 
 private:
     int x;
@@ -23,6 +23,7 @@ private:
 signals:
 
 public slots:
+    GameButton *teste();
 };
 
 #endif // GAMEBUTTON_H
