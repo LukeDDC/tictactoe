@@ -1,26 +1,27 @@
 #include "tictactoe.h"
+#include "QDebug"
 
 TicTacToe::TicTacToe()
 {
-    int game[3][3];
     char players[2] = { 'X', 'Y' };
     currentPlayer = 'X';
-    for (int row = 0; row < 3; ++row) {
-        for (int column = 0; column < 3; ++column) {
-            game[row][column] = 0;
+    for (int row = 0; row < rows; ++row) {
+        for (int column = 0; column < cols; ++column) {
+            game[row][column] = '\0';
         }
     }
 }
 
 char TicTacToe::play(int x, int y)
 {
-    char playedBy = getActualPlayer();
+    char playerMark = getCurrentPlayer();
+    game[x][y] = playerMark;
     switchPlayer();
-    return playedBy;
+    return playerMark;
 }
 
 
-char TicTacToe::getActualPlayer()
+char TicTacToe::getCurrentPlayer()
 {
     return this->currentPlayer;
 }
@@ -28,8 +29,68 @@ char TicTacToe::getActualPlayer()
 
 void TicTacToe::switchPlayer()
 {
-    if(getActualPlayer() == 'X')
+    if(getCurrentPlayer() == 'X')
         this->currentPlayer = 'Y';
     else
         this->currentPlayer = 'X';
+}
+
+bool TicTacToe::isGameOver()
+{
+    if(verticalWin() || horizontalWin()) {
+        return true;
+    }
+
+    return false;
+}
+
+bool TicTacToe::horizontalWin()
+{
+    for (int row = 0; row < rows; row++) {
+        if(checkColsOfRow(row))
+        {
+            winnerMark = game[row][0];
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool TicTacToe::verticalWin()
+{
+    for (int col = 0; col < cols; col++)
+        if(checkRowsOfCol(col))
+        {
+            winnerMark = game[0][col];
+            return true;
+        }
+
+    return false;
+}
+
+bool TicTacToe::checkColsOfRow(int row)
+{
+    char previousPlay = game[row][0];
+    for (int col = 1; col < cols; col++)
+        if(game[row][col] != previousPlay || game[row][col] == '\0' || previousPlay == '\0')
+            return false;
+
+    return true;
+}
+
+bool TicTacToe::checkRowsOfCol(int col)
+{
+    char previousPlay = game[0][col];
+
+    for (int row = 0; row < rows; row++)
+        if (game[row][col] != previousPlay || game[row][col] == '\0' || previousPlay == '\0')
+            return false;
+
+    return true;
+}
+
+char TicTacToe::getWinner()
+{
+    return this->winnerMark;
 }

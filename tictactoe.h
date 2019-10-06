@@ -6,10 +6,22 @@ class TicTacToe
 public:
     TicTacToe();
     char play(int x, int y);
-    char getActualPlayer();
+    char getCurrentPlayer();
+    char getWinner();
+    bool isGameOver();
 private:
+    int const static rows = 3;
+    int const static cols = 3;
+    char game[rows][cols];
     char currentPlayer;
+    char winnerMark;
+
     void switchPlayer();
+    bool horizontalWin();
+    bool verticalWin();
+    bool checkColsOfRow(int row);
+    bool checkRowsOfCol(int col);
+
 };
 
 #endif // TICTACTOE_H
