@@ -22,8 +22,10 @@ public:
 private:
     Ui::MainWindow *ui;
     TicTacToe *game;
+    QList<GameButton *> *gameButtons;
 
 public slots:
-    void handleButtonClick();
+    void handleGameButtonClick();
+    void handleResetButtonClick();
 };
 #endif // MAINWINDOW_H
